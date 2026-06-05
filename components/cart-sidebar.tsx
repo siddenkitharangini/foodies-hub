@@ -9,6 +9,10 @@ export function CartSidebar() {
 
   if (!isCartOpen) return null
 
+  const subtotal = totalPrice
+  const tax = totalPrice * 0.05
+  const grandTotal = subtotal + tax
+
   return (
     <>
       {/* Overlay */}
@@ -28,6 +32,7 @@ export function CartSidebar() {
           <button
             onClick={() => setIsCartOpen(false)}
             className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors"
+            aria-label="Close cart"
           >
             <X className="w-5 h-5 text-foreground" />
           </button>
@@ -46,7 +51,7 @@ export function CartSidebar() {
               {items.map(item => (
                 <div
                   key={item.id}
-                  className="flex gap-4 p-4 bg-secondary rounded-lg border border-border"
+                  className="flex gap-4 p-4 bg-secondary rounded-lg border border-border hover:border-primary/30 transition-colors"
                 >
                   {item.image && (
                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
@@ -66,20 +71,23 @@ export function CartSidebar() {
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-colors"
+                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                        aria-label="Decrease quantity"
                       >
                         <Minus className="w-4 h-4 text-foreground" />
                       </button>
                       <span className="text-foreground font-medium w-6 text-center">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-colors"
+                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 hover:bg-primary/10 transition-colors"
+                        aria-label="Increase quantity"
                       >
                         <Plus className="w-4 h-4 text-foreground" />
                       </button>
                       <button
                         onClick={() => removeItem(item.id)}
                         className="ml-auto w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center hover:bg-red-500/20 transition-colors"
+                        aria-label="Remove item"
                       >
                         <Trash2 className="w-4 h-4 text-red-400" />
                       </button>
@@ -96,20 +104,20 @@ export function CartSidebar() {
           <div className="border-t border-border p-6 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-foreground/70">Subtotal</span>
-              <span className="text-foreground font-semibold">${totalPrice.toFixed(2)}</span>
+              <span className="text-foreground font-semibold">${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-foreground/70">Tax (10%)</span>
-              <span className="text-foreground font-semibold">${(totalPrice * 0.1).toFixed(2)}</span>
+              <span className="text-foreground/70">Tax (5%)</span>
+              <span className="text-foreground font-semibold">${tax.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              <span className="text-lg font-semibold text-foreground">Total</span>
-              <span className="text-xl font-bold text-primary">${(totalPrice * 1.1).toFixed(2)}</span>
+              <span className="text-lg font-semibold text-foreground">Grand Total</span>
+              <span className="text-xl font-bold text-primary">${grandTotal.toFixed(2)}</span>
             </div>
             
             <button
               onClick={() => {
-                alert('Proceeding to checkout...')
+                alert('Thank you for your order! Proceeding to checkout...')
                 clearCart()
                 setIsCartOpen(false)
               }}

@@ -1,4 +1,8 @@
-import { Star } from 'lucide-react'
+"use client"
+
+import { useState, useEffect } from 'react'
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useInView } from '@/lib/use-in-view'
 
 const testimonials = [
   {
@@ -32,9 +36,35 @@ const testimonials = [
 ]
 
 export function Testimonials() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.1 })
+
+  // Auto-slide functionality
+  useEffect(() => {
+    if (isPaused) return
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isPaused])
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
   return (
-    <section className="py-24 bg-secondary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section 
+      ref={ref}
+      className="py-24 bg-secondary"
+    >
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
@@ -48,13 +78,13 @@ export function Testimonials() {
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Desktop Grid View */}
+        <div className="hidden md:grid grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
-              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Rating */}
               <div className="flex gap-1 mb-6">
@@ -82,6 +112,88 @@ export function Testimonials() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Mobile Carousel View */}
+        <div 
+          className="md:hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
+          <div className="relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {testimonials.map((testimonial) => (
+                  <div
+                    key={testimonial.name}
+                    className="w-full flex-shrink-0 px-2"
+                  >
+                    <div className="p-6 bg-card rounded-lg border border-border">
+                      {/* Rating */}
+                      <div className="flex gap-1 mb-4">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <p className="text-foreground/80 leading-relaxed mb-6 italic">
+                        {`"${testimonial.content}"`}
+                      </p>
+
+                      {/* Author */}
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
+                          <span className="text-primary font-semibold text-xs">
+                            {testimonial.initials}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-foreground text-sm">{testimonial.name}</h4>
+                          <p className="text-foreground/60 text-xs">{testimonial.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 bg-card border border-border rounded-full flex items-center justify-center hover:border-primary/50 transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="w-5 h-5 text-foreground" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 bg-card border border-border rounded-full flex items-center justify-center hover:border-primary/50 transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5 text-foreground" />
+            </button>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-6">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'bg-primary w-6' : 'bg-foreground/20 hover:bg-foreground/40'
+                }`}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

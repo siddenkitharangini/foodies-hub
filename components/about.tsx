@@ -1,31 +1,36 @@
+"use client"
+
 import Image from 'next/image'
+import { useInView } from '@/lib/use-in-view'
 
 export function About() {
+  const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.1 })
+
   return (
-    <section id="about" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" ref={ref} className="py-24 bg-background">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
-          <div className="relative h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[500px] lg:h-[600px] rounded-lg overflow-hidden group">
             <Image
               src="/images/about-bg.png"
               alt="Restaurant interior"
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
             
             {/* Stats Overlay */}
             <div className="absolute bottom-8 left-8 right-8 grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg hover:bg-background transition-colors">
                 <p className="text-3xl font-bold text-primary">15+</p>
                 <p className="text-foreground/70 text-sm">Years of Excellence</p>
               </div>
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg hover:bg-background transition-colors">
                 <p className="text-3xl font-bold text-primary">50+</p>
                 <p className="text-foreground/70 text-sm">Signature Dishes</p>
               </div>
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg hover:bg-background transition-colors">
                 <p className="text-3xl font-bold text-primary">3</p>
                 <p className="text-foreground/70 text-sm">Michelin Stars</p>
               </div>
@@ -57,31 +62,31 @@ export function About() {
 
             {/* Values */}
             <div className="mt-10 grid grid-cols-2 gap-6">
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+              <div className="flex items-start gap-3 group">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-150 transition-transform" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Quality First</h4>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Quality First</h4>
                   <p className="text-foreground/60 text-sm">Premium ingredients from trusted sources</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+              <div className="flex items-start gap-3 group">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-150 transition-transform" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Artisan Craft</h4>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Artisan Craft</h4>
                   <p className="text-foreground/60 text-sm">Every dish made with precision</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+              <div className="flex items-start gap-3 group">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-150 transition-transform" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Warm Hospitality</h4>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Warm Hospitality</h4>
                   <p className="text-foreground/60 text-sm">Service that feels like home</p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2" />
+              <div className="flex items-start gap-3 group">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 group-hover:scale-150 transition-transform" />
                 <div>
-                  <h4 className="font-semibold text-foreground">Sustainability</h4>
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Sustainability</h4>
                   <p className="text-foreground/60 text-sm">Eco-conscious practices</p>
                 </div>
               </div>
