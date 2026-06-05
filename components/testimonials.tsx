@@ -4,28 +4,28 @@ const testimonials = [
   {
     name: 'Sarah Mitchell',
     role: 'Food Critic, The Daily Gazette',
-    content: 'An extraordinary dining experience that transcends expectations. The attention to detail in every dish is remarkable, and the ambiance is simply unmatched in the city.',
+    content: "An extraordinary dining experience that transcends expectations. The attention to detail in every dish is remarkable, and the ambiance is simply unmatched in the city.",
     rating: 5,
     initials: 'SM',
   },
   {
     name: 'James Chen',
     role: 'Regular Guest',
-    content: 'My wife and I have been coming here for our anniversaries for the past five years. The consistency in quality and service is what keeps us coming back.',
+    content: "My wife and I have been coming here for our anniversaries for the past five years. The consistency in quality and service is what keeps us coming back.",
     rating: 5,
     initials: 'JC',
   },
   {
     name: 'Emily Rodriguez',
     role: 'Travel Blogger',
-    content: 'I&apos;ve dined at restaurants around the world, and Foodie&apos;s Hub stands among the best. The truffle risotto alone is worth the trip.',
+    content: "I've dined at restaurants around the world, and Foodie's Hub stands among the best. The truffle risotto alone is worth the trip.",
     rating: 5,
     initials: 'ER',
   },
   {
     name: 'Michael Thompson',
     role: 'Business Executive',
-    content: 'Perfect for business dinners. The private dining room is elegant, the service is impeccable, and the wine selection is outstanding.',
+    content: "Perfect for business dinners. The private dining room is elegant, the service is impeccable, and the wine selection is outstanding.",
     rating: 5,
     initials: 'MT',
   },
@@ -44,8 +44,7 @@ export function Testimonials() {
             What Our Guests Say
           </h2>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
-            Don&apos;t just take our word for it. Hear from our valued guests about their 
-            memorable experiences at Foodie&apos;s Hub.
+            {"Don't just take our word for it. Hear from our valued guests about their memorable experiences at Foodie's Hub."}
           </p>
         </div>
 
@@ -54,7 +53,7 @@ export function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
-              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
+              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Rating */}
@@ -66,7 +65,7 @@ export function Testimonials() {
 
               {/* Quote */}
               <p className="text-foreground/80 text-lg leading-relaxed mb-8 italic">
-                &ldquo;{testimonial.content}&rdquo;
+                {`"${testimonial.content}"`}
               </p>
 
               {/* Author */}

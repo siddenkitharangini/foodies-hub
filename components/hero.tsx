@@ -31,7 +31,7 @@ export function Hero() {
           Welcome to
         </p>
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground mb-6 text-balance">
-          Foodie&apos;s Hub
+          {"Foodie's Hub"}
         </h1>
         <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
           Experience the art of fine dining where every dish tells a story. 

@@ -48,7 +48,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-serif font-bold text-primary mb-4">
-              Foodie&apos;s Hub
+              {"Foodie's Hub"}
             </h3>
             <p className="text-foreground/60 text-sm leading-relaxed mb-6">
               Experience the art of fine dining where every dish tells a story. 
@@ -147,7 +147,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-foreground/50 text-sm">
-              © {new Date().getFullYear()} Foodie&apos;s Hub. All rights reserved.
+              © {new Date().getFullYear()} {"Foodie's Hub"}. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-foreground/50 hover:text-primary transition-colors">

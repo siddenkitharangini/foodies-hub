@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ShoppingCart } from 'lucide-react'
+import { useCart } from '@/lib/cart-context'
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -15,6 +16,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { totalItems, setIsCartOpen } = useCart()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +44,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="#home" className="flex items-center gap-2" onClick={(e) => handleNavClick(e, '#home')}>
-            <span className="text-2xl font-bold text-primary font-serif">Foodie&apos;s Hub</span>
+            <span className="text-2xl font-bold text-primary font-serif">Foodie's Hub</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -57,6 +59,21 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
+            
+            {/* Cart Button */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+              aria-label="Open cart"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
@@ -67,13 +84,29 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            {/* Cart Button Mobile */}
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="relative p-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+              aria-label="Open cart"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            
+            <button
+              className="text-foreground p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

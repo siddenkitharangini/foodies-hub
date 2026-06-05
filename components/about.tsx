@@ -38,14 +38,11 @@ export function About() {
               Our Story
             </p>
             <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6">
-              About Foodie&apos;s Hub
+              {"About Foodie's Hub"}
             </h2>
             <div className="space-y-6 text-foreground/70 leading-relaxed">
               <p>
-                Founded in 2009, Foodie&apos;s Hub has been a beacon of culinary excellence in 
-                the heart of the city. What started as a passionate dream has evolved into 
-                one of the most celebrated fine dining destinations, earning three Michelin 
-                stars and countless accolades.
+                {"Founded in 2009, Foodie's Hub has been a beacon of culinary excellence in the heart of the city. What started as a passionate dream has evolved into one of the most celebrated fine dining destinations, earning three Michelin stars and countless accolades."}
               </p>
               <p>
                 Our philosophy is simple yet profound: source the finest ingredients, treat 
@@ -54,10 +51,7 @@ export function About() {
                 the culinary arts.
               </p>
               <p>
-                Beyond the food, we believe in creating memorable experiences. Our team of 
-                dedicated professionals ensures that every visit feels special, whether 
-                you&apos;re celebrating a milestone or simply enjoying a quiet evening with 
-                loved ones.
+                {"Beyond the food, we believe in creating memorable experiences. Our team of dedicated professionals ensures that every visit feels special, whether you're celebrating a milestone or simply enjoying a quiet evening with loved ones."}
               </p>
             </div>
 

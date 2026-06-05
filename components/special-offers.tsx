@@ -48,7 +48,7 @@ export function SpecialOffers() {
           <div className="relative z-10 text-center">
             <p className="text-primary text-sm font-medium mb-2">LIMITED TIME</p>
             <h3 className="text-3xl sm:text-4xl font-serif font-bold text-foreground mb-4">
-              Chef&apos;s Tasting Menu
+              {"Chef's Tasting Menu"}
             </h3>
             <p className="text-foreground/70 max-w-lg mx-auto mb-6">
               Experience a 7-course culinary journey with wine pairings selected by our sommelier. 
