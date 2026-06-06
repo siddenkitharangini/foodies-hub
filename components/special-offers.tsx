@@ -1,4 +1,4 @@
-import { Percent, Gift, Clock } from 'lucide-react'
+import { Percent, Gift, Clock, Heart } from 'lucide-react'
 
 const offers = [
   {
@@ -21,6 +21,13 @@ const offers = [
     description: 'Book before 6 PM and receive 15% off your entire bill. Perfect for a relaxed evening.',
     code: 'EARLYBIRD',
     validUntil: 'Mon-Thu only',
+  },
+  {
+    icon: Heart,
+    title: 'Anniversary Celebration Package',
+    description: 'Create unforgettable memories with our exclusive romantic dinner for two. Includes champagne toast and complimentary dessert.',
+    code: 'ANNIVERSARY',
+    validUntil: 'Advance booking required',
   },
 ]
 
@@ -61,24 +68,24 @@ export function SpecialOffers() {
         </div>
 
         {/* Offer Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {offers.map((offer, index) => (
             <div
               key={offer.title}
-              className="group p-8 bg-card rounded-xl border border-border hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
+              className="group h-full p-8 bg-card rounded-xl border border-border hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1 flex flex-col"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
+              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110 flex-shrink-0">
                 <offer.icon className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {offer.title}
               </h3>
-              <p className="text-foreground/60 text-sm leading-relaxed mb-6 font-light">
+              <p className="text-foreground/60 text-sm leading-relaxed mb-6 font-light flex-grow">
                 {offer.description}
               </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
+              <div className="flex flex-col gap-3 pt-4 border-t border-border/30">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full w-fit">
                   Code: {offer.code}
                 </span>
                 <span className="text-foreground/50 text-xs">

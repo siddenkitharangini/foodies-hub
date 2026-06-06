@@ -24,6 +24,13 @@ const chefs = [
     image: '/images/chef-3.png',
     speciality: 'Pastry Arts',
   },
+  {
+    name: 'Sophie Durand',
+    role: 'Head Sommelier',
+    description: 'Certified wine expert with 15+ years selecting the world\'s finest wines. Perfect pairings for every dish.',
+    image: '/images/chef-4.png',
+    speciality: 'Wine Expertise',
+  },
 ]
 
 export function ChefShowcase() {
@@ -45,14 +52,14 @@ export function ChefShowcase() {
         </div>
 
         {/* Chefs Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {chefs.map((chef, index) => (
             <div
               key={chef.name}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1 flex flex-col h-full"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="relative h-48 sm:h-56 overflow-hidden">
+              <div className="relative h-48 sm:h-56 overflow-hidden flex-shrink-0">
                 <Image
                   src={chef.image}
                   alt={chef.name}
@@ -66,12 +73,12 @@ export function ChefShowcase() {
                   </span>
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-serif font-bold text-foreground mb-0.5 group-hover:text-primary transition-colors duration-300">
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-lg sm:text-xl font-serif font-bold text-foreground mb-0.5 group-hover:text-primary transition-colors duration-300">
                   {chef.name}
                 </h3>
-                <p className="text-primary text-sm font-medium mb-2">{chef.role}</p>
-                <p className="text-foreground/60 text-sm leading-relaxed line-clamp-2">
+                <p className="text-primary text-sm font-medium mb-3">{chef.role}</p>
+                <p className="text-foreground/60 text-sm leading-relaxed flex-grow">
                   {chef.description}
                 </p>
               </div>
