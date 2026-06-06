@@ -33,13 +33,13 @@ export function Gallery() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {galleryImages.map((image, index) => (
             <button
               key={image.src}
               onClick={() => setSelectedImage(image.src)}
               className={`relative overflow-hidden rounded-lg group cursor-pointer ${
-                index === 0 ? 'md:col-span-2 md:row-span-2 h-64 md:h-auto' : 'h-48 md:h-64'
+                index === 0 ? 'lg:col-span-2 lg:row-span-2 h-40 sm:h-64 lg:h-auto' : 'h-40 sm:h-48 lg:h-64'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >

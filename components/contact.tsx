@@ -145,11 +145,11 @@ export function Contact() {
             <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
               Get in Touch
             </p>
-            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6">
+            <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6 text-balance">
               Contact Us
             </h2>
             <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
-              {"We'd love to hear from you. Make a reservation, ask a question, or simply say hello."}
+              {`We'd love to hear from you. Make a reservation, ask a question, or simply say hello.`}
             </p>
           </div>
 

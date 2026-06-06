@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ShoppingCart } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 import { useToast } from '@/components/toast'
+import { useScrollAnimation } from '@/hooks/use-scroll-animation'
 
 const featuredDishes = [
   {
@@ -53,6 +54,7 @@ const featuredDishes = [
 export function FeaturedDishes() {
   const { addItem } = useCart()
   const { showToast } = useToast()
+  const { ref, isVisible } = useScrollAnimation()
 
   const handleAddToCart = (dish: typeof featuredDishes[0]) => {
     addItem({
@@ -65,10 +67,10 @@ export function FeaturedDishes() {
   }
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-background" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
             Chef's Selection
           </p>
@@ -82,37 +84,40 @@ export function FeaturedDishes() {
         </div>
 
         {/* Dishes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-3 ${
+                isVisible ? 'animate-slide-up' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${isVisible ? index * 100 : 0}ms` }}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden bg-foreground/5">
                 <Image
                   src={dish.image}
                   alt={dish.name}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-125"
+                  priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 text-sm font-bold">
+                <div className="absolute inset-0 bg-gradient-to-t from-card/95 via-card/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 text-sm font-bold rounded-full shadow-lg shadow-primary/50 group-hover:shadow-xl group-hover:shadow-primary/80 transition-all duration-300">
                   ${dish.price}
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                   {dish.name}
                 </h3>
-                <p className="text-foreground/70 text-sm leading-relaxed mb-4">
+                <p className="text-foreground/70 text-sm leading-relaxed mb-6 line-clamp-3 font-light">
                   {dish.description}
                 </p>
                 <button
                   onClick={() => handleAddToCart(dish)}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-lg group/btn"
                 >
-                  <ShoppingCart className="w-4 h-4" />
+                  <ShoppingCart className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
                   Add to Cart
                 </button>
               </div>
