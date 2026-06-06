@@ -101,10 +101,9 @@ export function Menu() {
                 {category.items.map((item, index) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 animate-fade-in-up"
+                    className="flex items-center justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
                     style={{ 
                       animationDelay: `${index * 50}ms`,
-                      opacity: 0,
                       animation: `fade-in-up 0.6s ease-out forwards`,
                     }}
                   >

@@ -65,10 +65,9 @@ export function SpecialOffers() {
           {offers.map((offer, index) => (
             <div
               key={offer.title}
-              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 animate-fade-in-up"
+              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
               style={{ 
                 animationDelay: `${index * 100}ms`,
-                opacity: 0,
                 animation: `fade-in-up 0.6s ease-out forwards`,
               }}
             >

@@ -86,10 +86,9 @@ export function FeaturedDishes() {
           {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 animate-fade-in-up"
+              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2"
               style={{ 
                 animationDelay: `${index * 100}ms`,
-                opacity: 0,
                 animation: `fade-in-up 0.6s ease-out forwards`,
               }}
             >
