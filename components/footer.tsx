@@ -1,6 +1,7 @@
 "use client"
 
-import { Mail, MapPin, Phone, Clock } from 'lucide-react'
+import { Mail, MapPin, Phone, Clock, ArrowUp } from 'lucide-react'
+import { useState } from 'react'
 
 const FacebookIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -35,6 +36,9 @@ const openingHours = [
 ]
 
 export function Footer() {
+  const [email, setEmail] = useState('')
+  const [subscribed, setSubscribed] = useState(false)
+
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const element = document.querySelector(href)
@@ -43,11 +47,24 @@ export function Footer() {
     }
   }
 
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) {
+      setSubscribed(true)
+      setEmail('')
+      setTimeout(() => setSubscribed(false), 3000)
+    }
+  }
+
+  const handleBackToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <footer className="bg-card border-t border-border/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-12">
+          {/* Brand & Newsletter */}
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-serif font-bold text-primary mb-4">
               {"Foodie's Hub"}
@@ -109,17 +126,17 @@ export function Footer() {
           <div>
             <h4 className="text-lg font-semibold text-foreground mb-6 font-serif flex items-center gap-2">
               <Clock className="w-5 h-5 text-primary" />
-              Opening Hours
+              Hours
             </h4>
             <ul className="space-y-4">
               {openingHours.map((item) => (
                 <li key={item.day} className="flex justify-between text-sm gap-4">
                   <span className="text-foreground/70 font-light">{item.day}</span>
-                  <span className="text-foreground font-medium">{item.hours}</span>
+                  <span className="text-foreground font-medium text-xs">{item.hours}</span>
                 </li>
               ))}
               <li className="pt-4 border-t border-border/30 mt-4">
-                <span className="text-primary text-sm font-medium">Brunch: Sat-Sun 10AM - 2PM</span>
+                <span className="text-primary text-xs font-medium">Brunch: Sat-Sun 10AM-2PM</span>
               </li>
             </ul>
           </div>
@@ -127,45 +144,74 @@ export function Footer() {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Contact</h4>
-            <ul className="space-y-5 text-sm">
+            <ul className="space-y-4 text-sm">
               <li className="flex gap-3 group">
-                <MapPin className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <div className="text-foreground/70 group-hover:text-foreground transition-colors font-light leading-relaxed">
-                  123 Gourmet Avenue<br />
+                <MapPin className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <div className="text-foreground/70 group-hover:text-foreground transition-colors font-light text-xs leading-relaxed">
+                  123 Gourmet Ave<br />
                   Manhattan, NY 10001
                 </div>
               </li>
               <li className="flex gap-3 group">
-                <Phone className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <a href="tel:+12125550123" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light">
+                <Phone className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="tel:+12125550123" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-xs">
                   +1 (212) 555-0123
                 </a>
               </li>
               <li className="flex gap-3 group">
-                <Mail className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <a href="mailto:reservations@foodieshub.com" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light">
+                <Mail className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="mailto:reservations@foodieshub.com" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-xs break-all">
                   reservations@foodieshub.com
                 </a>
               </li>
             </ul>
           </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Newsletter</h4>
+            <p className="text-foreground/70 text-xs mb-4 font-light">Subscribe for exclusive offers and culinary news.</p>
+            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-3 py-2 bg-secondary/50 border border-border/50 rounded-lg text-xs text-foreground placeholder-foreground/50 focus:outline-none focus:border-primary/50"
+                required
+              />
+              <button
+                type="submit"
+                className="w-full px-3 py-2 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-all duration-300"
+              >
+                {subscribed ? 'Subscribed!' : 'Subscribe'}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
-      {/* Copyright */}
+      {/* Copyright & Back to Top */}
       <div className="border-t border-border/30 bg-foreground/2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
-            <p className="text-foreground/50 font-light">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-foreground/50 font-light text-xs sm:text-sm">
               © {new Date().getFullYear()} {"Foodie's Hub"}. All rights reserved.
             </p>
-            <div className="flex gap-8 text-sm">
+            <div className="flex gap-6 sm:gap-8 text-xs sm:text-sm">
               <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
-                Privacy Policy
+                Privacy
               </a>
               <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
-                Terms of Service
+                Terms
               </a>
+              <button
+                onClick={handleBackToTop}
+                className="text-foreground/50 hover:text-primary transition-all duration-300 font-light flex items-center gap-1 hover:translate-y-[-2px]"
+                aria-label="Back to top"
+              >
+                Back to Top <ArrowUp className="w-3 h-3" />
+              </button>
             </div>
           </div>
         </div>

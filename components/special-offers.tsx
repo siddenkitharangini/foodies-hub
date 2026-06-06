@@ -43,25 +43,25 @@ export function SpecialOffers() {
         </div>
 
         {/* Banner */}
-        <div className="relative mb-16 p-8 sm:p-12 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-xl border border-primary/30 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20">
+        <div className="relative mb-16 p-6 sm:p-8 lg:p-12 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-xl border border-primary/30 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="relative z-10 text-center">
-            <p className="text-primary text-sm font-medium mb-2">LIMITED TIME</p>
-            <h3 className="text-3xl sm:text-4xl font-serif font-bold text-foreground mb-4">
+            <p className="text-primary text-xs sm:text-sm font-medium mb-2">LIMITED TIME</p>
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-foreground mb-3 sm:mb-4">
               {"Chef's Tasting Menu"}
             </h3>
-            <p className="text-foreground/70 max-w-lg mx-auto mb-6">
+            <p className="text-foreground/70 max-w-lg mx-auto mb-4 sm:mb-6 text-sm sm:text-base">
               Experience a 7-course culinary journey with wine pairings selected by our sommelier. 
               Originally $250, now just $195 per person.
             </p>
-            <span className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
+            <span className="inline-block px-6 sm:px-8 py-2 sm:py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105 text-sm sm:text-base">
               Save $55 Per Person
             </span>
           </div>
         </div>
 
         {/* Offer Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {offers.map((offer, index) => (
             <div
               key={offer.title}

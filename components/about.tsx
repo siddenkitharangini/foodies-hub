@@ -6,7 +6,7 @@ export function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
-          <div className="relative h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-lg overflow-hidden">
             <Image
               src="/images/about-bg.png"
               alt="Restaurant interior"
@@ -16,18 +16,18 @@ export function About() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
             
             {/* Stats Overlay */}
-            <div className="absolute bottom-8 left-8 right-8 grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
-                <p className="text-3xl font-bold text-primary">15+</p>
-                <p className="text-foreground/70 text-sm">Years of Excellence</p>
+            <div className="absolute bottom-8 left-4 right-4 sm:left-8 sm:right-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div className="text-center p-3 sm:p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+                <p className="text-2xl sm:text-3xl font-bold text-primary">15+</p>
+                <p className="text-foreground/70 text-xs sm:text-sm">Years of Excellence</p>
               </div>
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
-                <p className="text-3xl font-bold text-primary">50+</p>
-                <p className="text-foreground/70 text-sm">Signature Dishes</p>
+              <div className="text-center p-3 sm:p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+                <p className="text-2xl sm:text-3xl font-bold text-primary">50+</p>
+                <p className="text-foreground/70 text-xs sm:text-sm">Signature Dishes</p>
               </div>
-              <div className="text-center p-4 bg-background/90 backdrop-blur-sm rounded-lg">
-                <p className="text-3xl font-bold text-primary">3</p>
-                <p className="text-foreground/70 text-sm">Michelin Stars</p>
+              <div className="text-center p-3 sm:p-4 bg-background/90 backdrop-blur-sm rounded-lg">
+                <p className="text-2xl sm:text-3xl font-bold text-primary">3</p>
+                <p className="text-foreground/70 text-xs sm:text-sm">Michelin Stars</p>
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export function About() {
             </div>
 
             {/* Values */}
-            <div className="mt-10 grid grid-cols-2 gap-6">
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-start gap-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2" />
                 <div>

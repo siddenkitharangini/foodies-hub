@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ShoppingCart } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 import { useToast } from '@/components/toast'
+import { useScrollAnimation } from '@/hooks/use-scroll-animation'
 
 const featuredDishes = [
   {
@@ -53,6 +54,7 @@ const featuredDishes = [
 export function FeaturedDishes() {
   const { addItem } = useCart()
   const { showToast } = useToast()
+  const { ref, isVisible } = useScrollAnimation()
 
   const handleAddToCart = (dish: typeof featuredDishes[0]) => {
     addItem({
@@ -65,10 +67,10 @@ export function FeaturedDishes() {
   }
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-24 bg-background" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 ${isVisible ? 'animate-slide-up' : 'opacity-0'}`}>
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
             Chef's Selection
           </p>
@@ -82,14 +84,16 @@ export function FeaturedDishes() {
         </div>
 
         {/* Dishes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-3"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-3 ${
+                isVisible ? 'animate-slide-up' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${isVisible ? index * 100 : 0}ms` }}
             >
-              <div className="relative h-80 overflow-hidden bg-foreground/5">
+              <div className="relative h-48 sm:h-64 lg:h-80 overflow-hidden bg-foreground/5">
                 <Image
                   src={dish.image}
                   alt={dish.name}
