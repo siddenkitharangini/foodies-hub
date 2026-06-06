@@ -1,5 +1,7 @@
 "use client"
 
+import { Mail, MapPin, Phone, Clock } from 'lucide-react'
+
 const FacebookIcon = () => (
   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
     <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
@@ -42,24 +44,24 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-card border-t border-border/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Brand */}
           <div className="lg:col-span-1">
             <h3 className="text-2xl font-serif font-bold text-primary mb-4">
               {"Foodie's Hub"}
             </h3>
-            <p className="text-foreground/60 text-sm leading-relaxed mb-6">
+            <p className="text-foreground/70 text-sm leading-relaxed mb-6 font-light">
               Experience the art of fine dining where every dish tells a story. 
-              Award-winning cuisine crafted with passion.
+              Award-winning cuisine crafted with passion and premium ingredients.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors text-primary"
+                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
                 aria-label="Facebook"
               >
                 <FacebookIcon />
@@ -68,7 +70,7 @@ export function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors text-primary"
+                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
                 aria-label="Instagram"
               >
                 <InstagramIcon />
@@ -77,7 +79,7 @@ export function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors text-primary"
+                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
                 aria-label="Twitter"
               >
                 <XIcon />
@@ -87,14 +89,14 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6">Quick Links</h4>
-            <ul className="space-y-3">
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Quick Links</h4>
+            <ul className="space-y-4">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
                     onClick={(e) => handleScroll(e, link.href)}
-                    className="text-foreground/60 hover:text-primary transition-colors text-sm"
+                    className="text-foreground/70 hover:text-primary transition-all duration-300 text-sm font-light hover:translate-x-1 inline-block"
                   >
                     {link.name}
                   </a>
@@ -105,35 +107,43 @@ export function Footer() {
 
           {/* Opening Hours */}
           <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6">Opening Hours</h4>
-            <ul className="space-y-3">
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif flex items-center gap-2">
+              <Clock className="w-5 h-5 text-primary" />
+              Opening Hours
+            </h4>
+            <ul className="space-y-4">
               {openingHours.map((item) => (
-                <li key={item.day} className="flex justify-between text-sm">
-                  <span className="text-foreground/60">{item.day}</span>
-                  <span className="text-foreground">{item.hours}</span>
+                <li key={item.day} className="flex justify-between text-sm gap-4">
+                  <span className="text-foreground/70 font-light">{item.day}</span>
+                  <span className="text-foreground font-medium">{item.hours}</span>
                 </li>
               ))}
-              <li className="pt-2 border-t border-border">
-                <span className="text-primary text-sm">Brunch: Sat-Sun 10AM - 2PM</span>
+              <li className="pt-4 border-t border-border/30 mt-4">
+                <span className="text-primary text-sm font-medium">Brunch: Sat-Sun 10AM - 2PM</span>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6">Contact</h4>
-            <ul className="space-y-3 text-sm">
-              <li className="text-foreground/60">
-                123 Gourmet Avenue<br />
-                Manhattan, NY 10001
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Contact</h4>
+            <ul className="space-y-5 text-sm">
+              <li className="flex gap-3 group">
+                <MapPin className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <div className="text-foreground/70 group-hover:text-foreground transition-colors font-light leading-relaxed">
+                  123 Gourmet Avenue<br />
+                  Manhattan, NY 10001
+                </div>
               </li>
-              <li>
-                <a href="tel:+12125550123" className="text-foreground/60 hover:text-primary transition-colors">
+              <li className="flex gap-3 group">
+                <Phone className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="tel:+12125550123" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light">
                   +1 (212) 555-0123
                 </a>
               </li>
-              <li>
-                <a href="mailto:reservations@foodieshub.com" className="text-foreground/60 hover:text-primary transition-colors">
+              <li className="flex gap-3 group">
+                <Mail className="w-5 h-5 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="mailto:reservations@foodieshub.com" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light">
                   reservations@foodieshub.com
                 </a>
               </li>
@@ -143,17 +153,17 @@ export function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="border-t border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-foreground/50 text-sm">
+      <div className="border-t border-border/30 bg-foreground/2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+            <p className="text-foreground/50 font-light">
               © {new Date().getFullYear()} {"Foodie's Hub"}. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
-              <a href="#" className="text-foreground/50 hover:text-primary transition-colors">
+            <div className="flex gap-8 text-sm">
+              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
                 Privacy Policy
               </a>
-              <a href="#" className="text-foreground/50 hover:text-primary transition-colors">
+              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
                 Terms of Service
               </a>
             </div>

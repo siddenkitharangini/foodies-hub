@@ -18,16 +18,16 @@ export function CartSidebar() {
       />
 
       {/* Sidebar */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-card border-l border-border z-[70] flex flex-col animate-in slide-in-from-right duration-300">
+      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-card border-l border-border/30 z-[70] flex flex-col animate-in slide-in-from-right duration-300 shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-border">
+        <div className="flex items-center justify-between p-6 border-b border-border/30">
           <div className="flex items-center gap-3">
             <ShoppingBag className="w-6 h-6 text-primary" />
             <h2 className="text-xl font-serif font-bold text-foreground">Your Order</h2>
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/80 transition-colors"
+            className="w-10 h-10 rounded-full bg-secondary/50 hover:bg-secondary flex items-center justify-center transition-all duration-300 hover:scale-110"
           >
             <X className="w-5 h-5 text-foreground" />
           </button>
@@ -38,15 +38,15 @@ export function CartSidebar() {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <ShoppingBag className="w-16 h-16 text-foreground/20 mb-4" />
-              <p className="text-foreground/60 text-lg mb-2">Your cart is empty</p>
-              <p className="text-foreground/40 text-sm">Add some delicious dishes to get started</p>
+              <p className="text-foreground/60 text-lg mb-2 font-light">Your cart is empty</p>
+              <p className="text-foreground/40 text-sm font-light">Add some delicious dishes to get started</p>
             </div>
           ) : (
             <div className="space-y-4">
               {items.map(item => (
                 <div
                   key={item.id}
-                  className="flex gap-4 p-4 bg-secondary rounded-lg border border-border"
+                  className="flex gap-4 p-4 bg-secondary/40 rounded-lg border border-border/50 hover:border-primary/30 transition-all duration-300 group"
                 >
                   {item.image && (
                     <div className="relative w-20 h-20 rounded-lg overflow-hidden flex-shrink-0">
@@ -54,7 +54,7 @@ export function CartSidebar() {
                         src={item.image}
                         alt={item.name}
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                   )}
@@ -66,20 +66,20 @@ export function CartSidebar() {
                     <div className="flex items-center gap-3 mt-3">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-colors"
+                        className="w-8 h-8 rounded-full bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center transition-all duration-300 hover:scale-110"
                       >
                         <Minus className="w-4 h-4 text-foreground" />
                       </button>
                       <span className="text-foreground font-medium w-6 text-center">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="w-8 h-8 rounded-full bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-colors"
+                        className="w-8 h-8 rounded-full bg-card border border-border/50 hover:border-primary/50 hover:bg-primary/10 flex items-center justify-center transition-all duration-300 hover:scale-110"
                       >
                         <Plus className="w-4 h-4 text-foreground" />
                       </button>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="ml-auto w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center hover:bg-red-500/20 transition-colors"
+                        className="ml-auto w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
                       >
                         <Trash2 className="w-4 h-4 text-red-400" />
                       </button>
@@ -93,16 +93,16 @@ export function CartSidebar() {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-border p-6 space-y-4">
+          <div className="border-t border-border/30 p-6 space-y-4 bg-secondary/20">
             <div className="flex items-center justify-between">
-              <span className="text-foreground/70">Subtotal</span>
+              <span className="text-foreground/70 font-light">Subtotal</span>
               <span className="text-foreground font-semibold">${totalPrice.toFixed(2)}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-foreground/70">Tax (10%)</span>
+              <span className="text-foreground/70 font-light">Tax (10%)</span>
               <span className="text-foreground font-semibold">${(totalPrice * 0.1).toFixed(2)}</span>
             </div>
-            <div className="flex items-center justify-between pt-4 border-t border-border">
+            <div className="flex items-center justify-between pt-4 border-t border-border/30">
               <span className="text-lg font-semibold text-foreground">Total</span>
               <span className="text-xl font-bold text-primary">${(totalPrice * 1.1).toFixed(2)}</span>
             </div>
@@ -113,14 +113,14 @@ export function CartSidebar() {
                 clearCart()
                 setIsCartOpen(false)
               }}
-              className="w-full py-4 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-colors rounded-lg"
+              className="w-full py-4 bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 rounded-lg hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
             >
               Proceed to Checkout
             </button>
             
             <button
               onClick={clearCart}
-              className="w-full py-3 bg-transparent border border-border text-foreground/70 font-medium hover:border-red-500/50 hover:text-red-400 transition-colors rounded-lg"
+              className="w-full py-3 bg-transparent border border-border/50 text-foreground/70 font-medium hover:border-red-500/50 hover:text-red-400 transition-all duration-300 rounded-lg"
             >
               Clear Cart
             </button>

@@ -33,7 +33,7 @@ export function SpecialOffers() {
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
             Exclusive Deals
           </p>
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6 text-balance">
             Special Offers
           </h2>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
@@ -43,7 +43,7 @@ export function SpecialOffers() {
         </div>
 
         {/* Banner */}
-        <div className="relative mb-16 p-8 sm:p-12 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-lg border border-primary/30 overflow-hidden">
+        <div className="relative mb-16 p-8 sm:p-12 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-xl border border-primary/30 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/20">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="relative z-10 text-center">
             <p className="text-primary text-sm font-medium mb-2">LIMITED TIME</p>
@@ -54,7 +54,7 @@ export function SpecialOffers() {
               Experience a 7-course culinary journey with wine pairings selected by our sommelier. 
               Originally $250, now just $195 per person.
             </p>
-            <span className="inline-block px-6 py-3 bg-primary text-primary-foreground font-medium">
+            <span className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 hover:scale-105">
               Save $55 Per Person
             </span>
           </div>
@@ -65,20 +65,20 @@ export function SpecialOffers() {
           {offers.map((offer, index) => (
             <div
               key={offer.title}
-              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
+              className="group p-8 bg-card rounded-xl border border-border hover:border-primary/60 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-1"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300">
+              <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
                 <offer.icon className="w-7 h-7 text-primary" />
               </div>
               <h3 className="text-xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {offer.title}
               </h3>
-              <p className="text-foreground/60 text-sm leading-relaxed mb-6">
+              <p className="text-foreground/60 text-sm leading-relaxed mb-6 font-light">
                 {offer.description}
               </p>
-              <div className="flex items-center justify-between">
-                <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
                   Code: {offer.code}
                 </span>
                 <span className="text-foreground/50 text-xs">

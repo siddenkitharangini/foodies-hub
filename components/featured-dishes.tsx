@@ -86,33 +86,33 @@ export function FeaturedDishes() {
           {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-72 overflow-hidden bg-foreground/5">
                 <Image
                   src={dish.image}
                   alt={dish.name}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-125"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 text-sm font-bold">
+                <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 text-sm font-bold rounded-full shadow-lg shadow-primary/50 group-hover:shadow-xl group-hover:shadow-primary/80 transition-all duration-300">
                   ${dish.price}
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
                   {dish.name}
                 </h3>
-                <p className="text-foreground/70 text-sm leading-relaxed mb-4">
+                <p className="text-foreground/70 text-sm leading-relaxed mb-6 line-clamp-3">
                   {dish.description}
                 </p>
                 <button
                   onClick={() => handleAddToCart(dish)}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-lg group/btn"
                 >
-                  <ShoppingCart className="w-4 h-4" />
+                  <ShoppingCart className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
                   Add to Cart
                 </button>
               </div>

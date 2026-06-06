@@ -27,28 +27,28 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
+        <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium animate-fade-in">
           Welcome to
         </p>
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground mb-6 text-balance">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground mb-6 text-balance animate-fade-in" style={{ animationDelay: '100ms' }}>
           {"Foodie's Hub"}
         </h1>
-        <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
+        <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed text-pretty animate-fade-in" style={{ animationDelay: '200ms' }}>
           Experience the art of fine dining where every dish tells a story. 
           Crafted with passion, served with elegance.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: '300ms' }}>
           <a
             href="#contact"
             onClick={(e) => handleScroll(e, '#contact')}
-            className="px-8 py-4 bg-primary text-primary-foreground text-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105"
+            className="px-8 py-4 bg-primary text-primary-foreground text-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/30"
           >
             Book a Table
           </a>
           <a
             href="#menu"
             onClick={(e) => handleScroll(e, '#menu')}
-            className="px-8 py-4 border border-primary text-primary text-lg font-medium hover:bg-primary/10 transition-all duration-300"
+            className="px-8 py-4 border-2 border-primary text-primary text-lg font-medium hover:bg-primary/10 transition-all duration-300 hover:scale-105"
           >
             Explore Menu
           </a>

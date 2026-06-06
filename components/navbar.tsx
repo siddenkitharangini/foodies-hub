@@ -54,7 +54,7 @@ export function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-foreground/80 hover:text-primary transition-colors duration-200 text-sm font-medium tracking-wide"
+                className="text-foreground/80 hover:text-primary transition-all duration-200 text-sm font-medium tracking-wide hover:bg-primary/5 px-2 py-1 rounded hover:shadow-sm"
               >
                 {link.name}
               </a>
@@ -63,12 +63,12 @@ export function Navbar() {
             {/* Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+              className="relative inline-flex p-2 text-foreground/80 hover:text-primary transition-colors duration-200 hover:bg-primary/5 rounded-lg"
               aria-label="Open cart"
             >
               <ShoppingCart className="w-6 h-6" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center ring-2 ring-background">
                   {totalItems}
                 </span>
               )}
@@ -88,12 +88,12 @@ export function Navbar() {
             {/* Cart Button Mobile */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 text-foreground/80 hover:text-primary transition-colors duration-200"
+              className="relative inline-flex p-2 text-foreground/80 hover:text-primary transition-colors duration-200 hover:bg-primary/5 rounded-lg"
               aria-label="Open cart"
             >
               <ShoppingCart className="w-6 h-6" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center ring-2 ring-background">
                   {totalItems}
                 </span>
               )}

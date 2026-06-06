@@ -66,7 +66,7 @@ export function Menu() {
           <p className="text-primary uppercase tracking-[0.3em] text-sm mb-4 font-medium">
             Our Offerings
           </p>
-          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6">
+          <h2 className="text-4xl sm:text-5xl font-serif font-bold text-foreground mb-6 text-balance">
             The Menu
           </h2>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg">
@@ -76,15 +76,15 @@ export function Menu() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {menuCategories.map((category) => (
             <button
               key={category.name}
               onClick={() => setActiveCategory(category.name)}
               className={`px-6 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                 activeCategory === category.name
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-card text-foreground/70 hover:text-primary border border-border hover:border-primary/50'
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30'
+                  : 'bg-card text-foreground/70 hover:text-primary border border-border hover:border-primary/50 hover:shadow-md'
               }`}
             >
               {category.name}
@@ -93,32 +93,34 @@ export function Menu() {
         </div>
 
         {/* Menu Items */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto space-y-0">
           {menuCategories
             .filter((category) => category.name === activeCategory)
             .map((category) => (
-              <div key={category.name} className="space-y-4">
+              <div key={category.name} className="space-y-3">
                 {category.items.map((item, index) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/5"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="flex items-stretch justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10"
+                    style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xl font-serif font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
                         {item.name}
                       </h3>
                       <p className="text-foreground/60 mt-1 text-sm leading-relaxed">
                         {item.description}
                       </p>
                     </div>
-                    <div className="flex items-center gap-4 flex-shrink-0">
-                      <span className="text-primary font-bold text-lg">
-                        ${item.price}
-                      </span>
+                    <div className="flex items-center gap-4 flex-shrink-0 ml-4">
+                      <div className="text-right">
+                        <span className="text-primary font-bold text-lg block">
+                          ${item.price}
+                        </span>
+                      </div>
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                        className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 hover:shadow-lg"
                         aria-label={`Add ${item.name} to cart`}
                       >
                         <Plus className="w-5 h-5" />
