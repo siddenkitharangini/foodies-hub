@@ -21,18 +21,39 @@ const XIcon = () => (
   </svg>
 )
 
+const LinkedInIcon = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+  </svg>
+)
+
+const YouTubeIcon = () => (
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+)
+
 const quickLinks = [
   { name: 'Home', href: '#home' },
   { name: 'Menu', href: '#menu' },
   { name: 'Special Offers', href: '#offers' },
-  { name: 'About Us', href: '#about' },
+  { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ]
 
 const openingHours = [
-  { day: 'Mon - Thu', hours: '5:00 PM - 10:00 PM' },
-  { day: 'Fri - Sat', hours: '5:00 PM - 11:00 PM' },
+  { day: 'Monday - Thursday', hours: '5:00 PM - 10:00 PM' },
+  { day: 'Friday - Saturday', hours: '5:00 PM - 11:00 PM' },
   { day: 'Sunday', hours: '4:00 PM - 9:00 PM' },
+  { day: 'Brunch (Sat & Sun)', hours: '10:00 AM - 2:00 PM' },
+]
+
+const socialLinks = [
+  { icon: InstagramIcon, label: 'Instagram', url: 'https://instagram.com' },
+  { icon: FacebookIcon, label: 'Facebook', url: 'https://facebook.com' },
+  { icon: XIcon, label: 'X', url: 'https://twitter.com' },
+  { icon: LinkedInIcon, label: 'LinkedIn', url: 'https://linkedin.com' },
+  { icon: YouTubeIcon, label: 'YouTube', url: 'https://youtube.com' },
 ]
 
 export function Footer() {
@@ -61,59 +82,55 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-card border-t border-border/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-12">
-          {/* Brand & Newsletter */}
-          <div className="lg:col-span-1">
-            <h3 className="text-2xl font-serif font-bold text-primary mb-4">
+    <footer className="bg-card border-t border-primary/20">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-12 lg:mb-16">
+          
+          {/* Column 1: Brand */}
+          <div className="animate-slide-up">
+            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-primary mb-3">
               {"Foodie's Hub"}
             </h3>
+            <div className="w-12 h-1 bg-gradient-to-r from-primary to-primary/40 mb-6" />
             <p className="text-foreground/70 text-sm leading-relaxed mb-6 font-light">
-              Experience the art of fine dining where every dish tells a story. 
-              Award-winning cuisine crafted with passion and premium ingredients.
+              Where culinary artistry meets luxury hospitality. Award-winning fine dining crafted with passion, precision, and the finest ingredients from around the world.
             </p>
+            <p className="text-primary text-xs font-semibold tracking-widest mb-6">
+              MICHELIN-RECOGNIZED EXCELLENCE
+            </p>
+
+            {/* Social Media Icons */}
             <div className="flex gap-3">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
-                aria-label="Facebook"
-              >
-                <FacebookIcon />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
-                aria-label="Instagram"
-              >
-                <InstagramIcon />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg"
-                aria-label="Twitter"
-              >
-                <XIcon />
-              </a>
+              {socialLinks.map((social) => {
+                const Icon = social.icon
+                return (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-primary hover:scale-110 hover:shadow-lg hover:shadow-primary/30 group"
+                    aria-label={social.label}
+                  >
+                    <Icon />
+                  </a>
+                )
+              })}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* Column 2: Quick Links */}
+          <div className="animate-slide-up" style={{ animationDelay: '100ms' }}>
             <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Quick Links</h4>
-            <ul className="space-y-4">
+            <div className="w-8 h-0.5 bg-primary/50 mb-6" />
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
                     onClick={(e) => handleScroll(e, link.href)}
-                    className="text-foreground/70 hover:text-primary transition-all duration-300 text-sm font-light hover:translate-x-1 inline-block"
+                    className="text-foreground/70 hover:text-primary transition-all duration-300 text-sm font-light hover:translate-x-2 inline-block hover:font-medium"
                   >
                     {link.name}
                   </a>
@@ -122,95 +139,99 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Opening Hours */}
-          <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif flex items-center gap-2">
-              <Clock className="w-5 h-5 text-primary" />
-              Hours
-            </h4>
-            <ul className="space-y-4">
-              {openingHours.map((item) => (
-                <li key={item.day} className="flex justify-between text-sm gap-4">
-                  <span className="text-foreground/70 font-light">{item.day}</span>
-                  <span className="text-foreground font-medium text-xs">{item.hours}</span>
-                </li>
-              ))}
-              <li className="pt-4 border-t border-border/30 mt-4">
-                <span className="text-primary text-xs font-medium">Brunch: Sat-Sun 10AM-2PM</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Contact</h4>
-            <ul className="space-y-4 text-sm">
+          {/* Column 3: Contact Details */}
+          <div className="animate-slide-up" style={{ animationDelay: '200ms' }}>
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Contact Us</h4>
+            <div className="w-8 h-0.5 bg-primary/50 mb-6" />
+            <ul className="space-y-5">
               <li className="flex gap-3 group">
-                <MapPin className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <div className="text-foreground/70 group-hover:text-foreground transition-colors font-light text-xs leading-relaxed">
-                  123 Gourmet Ave<br />
-                  Manhattan, NY 10001
+                <MapPin className="w-5 h-5 text-primary/70 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <div className="text-foreground/70 group-hover:text-foreground transition-colors font-light text-sm leading-relaxed">
+                  123 Gourmet Avenue<br />
+                  Manhattan, NY 10001<br />
+                  <span className="text-xs text-primary mt-1 block">Reservations Welcome</span>
                 </div>
               </li>
               <li className="flex gap-3 group">
-                <Phone className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <a href="tel:+12125550123" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-xs">
+                <Phone className="w-5 h-5 text-primary/70 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="tel:+12125550123" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-sm hover:font-medium">
                   +1 (212) 555-0123
                 </a>
               </li>
               <li className="flex gap-3 group">
-                <Mail className="w-4 h-4 text-primary/60 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
-                <a href="mailto:reservations@foodieshub.com" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-xs break-all">
+                <Mail className="w-5 h-5 text-primary/70 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
+                <a href="mailto:reservations@foodieshub.com" className="text-foreground/70 group-hover:text-primary transition-all duration-300 font-light text-sm hover:font-medium break-all">
                   reservations@foodieshub.com
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Newsletter</h4>
-            <p className="text-foreground/70 text-xs mb-4 font-light">Subscribe for exclusive offers and culinary news.</p>
-            <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-3 py-2 bg-secondary/50 border border-border/50 rounded-lg text-xs text-foreground placeholder-foreground/50 focus:outline-none focus:border-primary/50"
-                required
-              />
-              <button
-                type="submit"
-                className="w-full px-3 py-2 bg-primary text-primary-foreground text-xs font-medium rounded-lg hover:bg-primary/90 transition-all duration-300"
-              >
-                {subscribed ? 'Subscribed!' : 'Subscribe'}
-              </button>
-            </form>
+          {/* Column 4: Hours & Newsletter */}
+          <div className="animate-slide-up" style={{ animationDelay: '300ms' }}>
+            <h4 className="text-lg font-semibold text-foreground mb-6 font-serif">Hours & Updates</h4>
+            <div className="w-8 h-0.5 bg-primary/50 mb-6" />
+            
+            {/* Hours */}
+            <div className="mb-8 pb-8 border-b border-border/30">
+              <ul className="space-y-2 text-xs">
+                {openingHours.map((item) => (
+                  <li key={item.day} className="flex justify-between gap-3">
+                    <span className="text-foreground/70 font-light">{item.day}</span>
+                    <span className="text-primary font-medium">{item.hours}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <p className="text-foreground/70 text-xs mb-3 font-light">Subscribe to our newsletter for exclusive offers and special events.</p>
+              <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-3 py-2.5 bg-secondary/50 border border-primary/30 rounded-lg text-xs text-foreground placeholder-foreground/50 focus:outline-none focus:border-primary/60 focus:bg-secondary transition-all duration-300"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="w-full px-3 py-2.5 bg-primary text-primary-foreground text-xs font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 hover:scale-105"
+                >
+                  {subscribed ? '✓ Subscribed' : 'Subscribe'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 mb-8" />
       </div>
 
-      {/* Copyright & Back to Top */}
-      <div className="border-t border-border/30 bg-foreground/2">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Bottom Bar */}
+      <div className="bg-foreground/2 border-t border-primary/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-foreground/50 font-light text-xs sm:text-sm">
-              © {new Date().getFullYear()} {"Foodie's Hub"}. All rights reserved.
+              © {new Date().getFullYear()} {"Foodie's Hub"}. All rights reserved. Crafted for culinary excellence.
             </p>
             <div className="flex gap-6 sm:gap-8 text-xs sm:text-sm">
-              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
-                Privacy
+              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light hover:underline">
+                Privacy Policy
               </a>
-              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light">
-                Terms
+              <a href="#" className="text-foreground/50 hover:text-primary transition-colors font-light hover:underline">
+                Terms & Conditions
               </a>
               <button
                 onClick={handleBackToTop}
-                className="text-foreground/50 hover:text-primary transition-all duration-300 font-light flex items-center gap-1 hover:translate-y-[-2px]"
+                className="text-foreground/50 hover:text-primary transition-all duration-300 font-light flex items-center gap-1.5 hover:translate-y-[-3px] group"
                 aria-label="Back to top"
               >
-                Back to Top <ArrowUp className="w-3 h-3" />
+                <span className="group-hover:underline">Back to Top</span>
+                <ArrowUp className="w-3 h-3" />
               </button>
             </div>
           </div>
