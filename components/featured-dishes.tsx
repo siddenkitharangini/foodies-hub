@@ -86,18 +86,22 @@ export function FeaturedDishes() {
           {featuredDishes.map((dish, index) => (
             <div
               key={dish.id}
-              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-2 animate-fade-in-up"
+              style={{ 
+                animationDelay: `${index * 100}ms`,
+                opacity: 0,
+                animation: `fade-in-up 0.6s ease-out forwards`,
+              }}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-64 overflow-hidden bg-secondary">
                 <Image
                   src={dish.image}
                   alt={dish.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 text-sm font-bold">
+                <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-4 py-2 text-sm font-bold rounded-lg shadow-lg shadow-primary/30">
                   ${dish.price}
                 </div>
               </div>
@@ -110,7 +114,7 @@ export function FeaturedDishes() {
                 </p>
                 <button
                   onClick={() => handleAddToCart(dish)}
-                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="w-full flex items-center justify-center gap-2 py-3 bg-primary/10 text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   <ShoppingCart className="w-4 h-4" />
                   Add to Cart

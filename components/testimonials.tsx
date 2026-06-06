@@ -29,6 +29,34 @@ const testimonials = [
     rating: 5,
     initials: 'MT',
   },
+  {
+    name: 'Victoria Laurent',
+    role: 'Michelin Guide Inspector',
+    content: "A masterclass in culinary excellence. Every course demonstrates remarkable technical skill and creative vision. The sommelier team is world-class.",
+    rating: 5,
+    initials: 'VL',
+  },
+  {
+    name: 'David Westbrook',
+    role: 'Celebrity Chef',
+    content: "I rarely give praise publicly, but this kitchen deserves recognition. The execution is flawless, and the flavors are transcendent. Bravo to the entire team.",
+    rating: 5,
+    initials: 'DW',
+  },
+  {
+    name: 'Priya Kapoor',
+    role: 'Luxury Travel Editor',
+    content: "For those seeking the pinnacle of fine dining, look no further. Every detail from ambiance to service to cuisine is perfection. A destination dining experience.",
+    rating: 5,
+    initials: 'PK',
+  },
+  {
+    name: 'Alexander Pierce',
+    role: 'Culinary Arts Professor',
+    content: "A rare gem where tradition meets innovation. The menu shows deep respect for classical techniques while embracing contemporary creativity. Truly special.",
+    rating: 5,
+    initials: 'AP',
+  },
 ]
 
 export function Testimonials() {
@@ -49,35 +77,39 @@ export function Testimonials() {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.name}
-              className="group p-8 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 animate-fade-in-up"
+              style={{ 
+                animationDelay: `${index * 50}ms`,
+                opacity: 0,
+                animation: `fade-in-up 0.6s ease-out forwards`,
+              }}
             >
               {/* Rating */}
-              <div className="flex gap-1 mb-6">
+              <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-primary text-primary" />
+                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
 
               {/* Quote */}
-              <p className="text-foreground/80 text-lg leading-relaxed mb-8 italic">
+              <p className="text-foreground/80 text-sm leading-relaxed mb-6 italic line-clamp-4">
                 {`"${testimonial.content}"`}
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                  <span className="text-primary font-semibold text-sm">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span className="text-primary font-semibold text-xs">
                     {testimonial.initials}
                   </span>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                  <p className="text-foreground/60 text-sm">{testimonial.role}</p>
+                <div className="min-w-0 flex-1">
+                  <h4 className="font-semibold text-foreground text-sm truncate">{testimonial.name}</h4>
+                  <p className="text-foreground/60 text-xs truncate">{testimonial.role}</p>
                 </div>
               </div>
             </div>

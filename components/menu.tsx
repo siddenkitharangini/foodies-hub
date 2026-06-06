@@ -76,15 +76,15 @@ export function Menu() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {menuCategories.map((category) => (
             <button
               key={category.name}
               onClick={() => setActiveCategory(category.name)}
               className={`px-6 py-3 text-sm font-medium transition-all duration-300 rounded-lg ${
                 activeCategory === category.name
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-card text-foreground/70 hover:text-primary border border-border hover:border-primary/50'
+                  ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/30 scale-105'
+                  : 'bg-card text-foreground/70 hover:text-primary border border-border hover:border-primary/50 hover:scale-105'
               }`}
             >
               {category.name}
@@ -101,8 +101,12 @@ export function Menu() {
                 {category.items.map((item, index) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/5"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="flex items-center justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1 animate-fade-in-up"
+                    style={{ 
+                      animationDelay: `${index * 50}ms`,
+                      opacity: 0,
+                      animation: `fade-in-up 0.6s ease-out forwards`,
+                    }}
                   >
                     <div className="flex-1 min-w-0">
                       <h3 className="text-xl font-serif font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
@@ -118,7 +122,7 @@ export function Menu() {
                       </span>
                       <button
                         onClick={() => handleAddToCart(item)}
-                        className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                        className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 active:scale-95"
                         aria-label={`Add ${item.name} to cart`}
                       >
                         <Plus className="w-5 h-5" />
