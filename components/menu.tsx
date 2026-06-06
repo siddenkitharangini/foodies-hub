@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { ShoppingCart, Plus } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 import { useToast } from '@/components/toast'
@@ -9,37 +10,37 @@ const menuCategories = [
   {
     name: 'Starters',
     items: [
-      { id: 'starter-1', name: 'Truffle Mushroom Soup', description: 'Wild mushroom soup with truffle oil and croutons', price: 16 },
-      { id: 'starter-2', name: 'Tuna Tartare', description: 'Fresh ahi tuna with avocado, sesame, and citrus ponzu', price: 22 },
-      { id: 'starter-3', name: 'Burrata Caprese', description: 'Creamy burrata with heirloom tomatoes and basil pesto', price: 18 },
-      { id: 'starter-4', name: 'Seared Scallops', description: 'Pan-seared scallops with cauliflower purée and bacon', price: 26 },
+      { id: 'starter-1', name: 'Truffle Mushroom Soup', description: 'Wild mushroom soup with truffle oil and croutons', price: 16, image: '/images/starter-1.png' },
+      { id: 'starter-2', name: 'Tuna Tartare', description: 'Fresh ahi tuna with avocado, sesame, and citrus ponzu', price: 22, image: '/images/starter-2.png' },
+      { id: 'starter-3', name: 'Burrata Caprese', description: 'Creamy burrata with heirloom tomatoes and basil pesto', price: 18, image: '/images/starter-3.png' },
+      { id: 'starter-4', name: 'Seared Scallops', description: 'Pan-seared scallops with cauliflower purée and bacon', price: 26, image: '/images/starter-4.png' },
     ],
   },
   {
     name: 'Main Course',
     items: [
-      { id: 'main-1', name: 'Wagyu Beef Tenderloin', description: 'A5 Wagyu with truffle jus and potato gratin', price: 125 },
-      { id: 'main-2', name: 'Chilean Sea Bass', description: 'Miso-glazed sea bass with bok choy and ginger', price: 58 },
-      { id: 'main-3', name: 'Duck Confit', description: 'Slow-cooked duck leg with cherry reduction and wild rice', price: 48 },
-      { id: 'main-4', name: 'Grilled Filet Mignon', description: '8oz center-cut filet with peppercorn sauce', price: 62 },
+      { id: 'main-1', name: 'Wagyu Beef Tenderloin', description: 'A5 Wagyu with truffle jus and potato gratin', price: 125, image: '/images/main-1.png' },
+      { id: 'main-2', name: 'Chilean Sea Bass', description: 'Miso-glazed sea bass with bok choy and ginger', price: 58, image: '/images/main-2.png' },
+      { id: 'main-3', name: 'Duck Confit', description: 'Slow-cooked duck leg with cherry reduction and wild rice', price: 48, image: '/images/main-3.png' },
+      { id: 'main-4', name: 'Grilled Filet Mignon', description: '8oz center-cut filet with peppercorn sauce', price: 62, image: '/images/main-4.png' },
     ],
   },
   {
     name: 'Desserts',
     items: [
-      { id: 'dessert-1', name: 'Crème Brûlée', description: 'Classic vanilla bean custard with caramelized sugar', price: 14 },
-      { id: 'dessert-2', name: 'Tiramisu', description: 'Espresso-soaked ladyfingers with mascarpone cream', price: 14 },
-      { id: 'dessert-3', name: 'Chocolate Soufflé', description: 'Warm chocolate soufflé with raspberry coulis', price: 16 },
-      { id: 'dessert-4', name: 'Seasonal Fruit Tart', description: 'Buttery pastry with pastry cream and fresh fruits', price: 12 },
+      { id: 'dessert-1', name: 'Crème Brûlée', description: 'Classic vanilla bean custard with caramelized sugar', price: 14, image: '/images/dessert-1.png' },
+      { id: 'dessert-2', name: 'Tiramisu', description: 'Espresso-soaked ladyfingers with mascarpone cream', price: 14, image: '/images/dessert-2.png' },
+      { id: 'dessert-3', name: 'Chocolate Soufflé', description: 'Warm chocolate soufflé with raspberry coulis', price: 16, image: '/images/dessert-3.png' },
+      { id: 'dessert-4', name: 'Seasonal Fruit Tart', description: 'Buttery pastry with pastry cream and fresh fruits', price: 12, image: '/images/dessert-4.png' },
     ],
   },
   {
     name: 'Beverages',
     items: [
-      { id: 'beverage-1', name: 'Signature Cocktails', description: 'House-crafted cocktails by our mixologist', price: 18 },
-      { id: 'beverage-2', name: 'Premium Wine Selection', description: 'Curated wines from renowned vineyards', price: 15 },
-      { id: 'beverage-3', name: 'Artisan Coffee', description: 'Single-origin espresso drinks', price: 6 },
-      { id: 'beverage-4', name: 'Fresh Pressed Juices', description: 'Seasonal fruits and vegetables', price: 8 },
+      { id: 'beverage-1', name: 'Signature Cocktails', description: 'House-crafted cocktails by our mixologist', price: 18, image: '/images/beverage-1.png' },
+      { id: 'beverage-2', name: 'Premium Wine Selection', description: 'Curated wines from renowned vineyards', price: 15, image: '/images/beverage-2.png' },
+      { id: 'beverage-3', name: 'Artisan Coffee', description: 'Single-origin espresso drinks', price: 6, image: '/images/beverage-3.png' },
+      { id: 'beverage-4', name: 'Fresh Pressed Juices', description: 'Seasonal fruits and vegetables', price: 8, image: '/images/beverage-4.png' },
     ],
   },
 ]
@@ -49,11 +50,12 @@ export function Menu() {
   const { addItem } = useCart()
   const { showToast } = useToast()
 
-  const handleAddToCart = (item: { id: string; name: string; price: number }) => {
+  const handleAddToCart = (item: { id: string; name: string; price: number; image: string }) => {
     addItem({
       id: item.id,
       name: item.name,
       price: item.price,
+      image: item.image,
     })
     showToast(`${item.name} added to cart`)
   }
@@ -92,44 +94,51 @@ export function Menu() {
           ))}
         </div>
 
-        {/* Menu Items */}
-        <div className="max-w-4xl mx-auto space-y-0">
+        {/* Menu Items Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {menuCategories
             .filter((category) => category.name === activeCategory)
-            .map((category) => (
-              <div key={category.name} className="space-y-3">
-                {category.items.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="flex items-stretch justify-between gap-4 p-6 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10"
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-serif font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {item.name}
-                      </h3>
-                      <p className="text-foreground/60 mt-1 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-4 flex-shrink-0 ml-4">
-                      <div className="text-right">
-                        <span className="text-primary font-bold text-lg block">
-                          ${item.price}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => handleAddToCart(item)}
-                        className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                        aria-label={`Add ${item.name} to cart`}
-                      >
-                        <Plus className="w-5 h-5" />
-                      </button>
+            .map((category) =>
+              category.items.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="group bg-card rounded-lg overflow-hidden border border-border hover:border-primary/60 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2"
+                  style={{ animationDelay: `${index * 75}ms` }}
+                >
+                  {/* Image */}
+                  <div className="relative h-56 overflow-hidden bg-foreground/5">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      priority={index < 2}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/95 via-card/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute top-3 right-3 bg-primary text-primary-foreground px-3 py-1 text-xs font-bold rounded-full shadow-lg shadow-primary/50 group-hover:shadow-xl group-hover:shadow-primary/80 transition-all duration-300">
+                      ${item.price}
                     </div>
                   </div>
-                ))}
-              </div>
-            ))}
+
+                  {/* Content */}
+                  <div className="p-4">
+                    <h3 className="text-base font-serif font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+                      {item.name}
+                    </h3>
+                    <p className="text-foreground/70 text-xs leading-relaxed mb-4 line-clamp-2 font-light">
+                      {item.description}
+                    </p>
+                    <button
+                      onClick={() => handleAddToCart(item)}
+                      className="w-full flex items-center justify-center gap-2 py-2.5 bg-primary/10 text-primary text-sm font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:shadow-lg group/btn"
+                    >
+                      <Plus className="w-4 h-4 transition-transform group-hover/btn:scale-110" />
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
         </div>
       </div>
     </section>
